@@ -12,6 +12,10 @@ module Overseer
       suites << @current_suite
     end
 
+    def total_assertions
+      suites.inject(0) { |total, suite| total + suite.total_test_assertions }
+    end
+
     def total_failures
       suites.inject(0) { |total, suite| total + suite.total_test_failures }
     end

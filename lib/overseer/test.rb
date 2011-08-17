@@ -32,5 +32,13 @@ module Overseer
     def failures
       @failures ||= []
     end
+
+    def assertions=(amount)
+      @assertions = amount
+    end
+
+    def assertions
+      @assertions ||= 0
+    end
   end
 end

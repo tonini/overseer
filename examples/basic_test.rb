@@ -14,4 +14,10 @@ class BasicTest
   test "#get some time" do
     (1..200000).map {|nr| nr += nr}
   end
+
+  test "assertion fail" do
+    say = "bye"
+
+    assert_equal "hello", say
+  end
 end

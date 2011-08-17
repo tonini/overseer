@@ -26,6 +26,10 @@ module Overseer
       tests.inject(0) { |total, test| total + test.time }
     end
 
+    def total_test_assertions
+      tests.inject(0) { |total, test | total + test.assertions }
+    end
+
     def tests
       @tests ||= []
     end

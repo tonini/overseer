@@ -15,7 +15,7 @@ module Overseer
       puts
       puts
       puts "Finished in %.3f seconds" % Overseer.total_time
-      puts "#{Overseer.total_tests} tests, #{Overseer.total_failures} failures, #{Overseer.total_errors} errors"
+      puts "#{Overseer.total_tests} tests, #{Overseer.total_assertions} assertions, #{Overseer.total_failures} failures, #{Overseer.total_errors} errors"
     end
 
     def self.print_single_test_result(test)
