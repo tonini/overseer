@@ -22,8 +22,17 @@ module Overseer
       print(test.passed? ? "." : (test.errors? ? "E" : "F"))
     end
 
+    def self.filter_backtrace(backtrace)
+      backtrace.reject do |line|
+        line.rindex(OVERSEER_DIR, 0)
+      end
+    end
+
+    def self.format_backtrace_output(backtrace)
+      backtrace.map { |line| "     # #{line}"}.join("\n")
+    end
+
     # TODO: split it up in more methods
-    # TODO: add backtrace filter
     def self.print_open_issues
       if Overseer.total_failures > 0 || Overseer.total_errors > 0
         print "\n\nOpen issues:\n\n"
@@ -39,7 +48,7 @@ module Overseer
                             test.failures.first
                           end
               puts "     #{exception.message}"
-              puts "#{exception.backtrace.join("\n     # ")}"
+              puts "#{format_backtrace_output(filter_backtrace(exception.backtrace))}"
               counter += 1
             end
           end

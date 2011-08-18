@@ -11,6 +11,8 @@ module Overseer
   extend self
   extend Duties
 
+  OVERSEER_DIR = File.dirname(File.dirname(File.expand_path(__FILE__)))
+
   def included(suite)
     suite.send(:extend, Dsl)
     suite.send(:extend, Assertions)
