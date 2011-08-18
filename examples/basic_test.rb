@@ -15,15 +15,28 @@ class BasicTest
     (1..200000).map {|nr| nr += nr}
   end
 
-  test "assertion fail" do
+  test "assertion_equal fail" do
     say = "bye"
 
     assert_equal "hello", say
   end
 
-  test "assertion passed" do
+  test "assertion_equal passed" do
     number = 12
 
     assert_equal 12, number
   end
+
+  test "assert_nil failed" do
+    the_end = "is coming!"
+
+    assert_nil the_end
+  end
+
+  test "assert_nil passed" do
+    box = nil
+
+    assert_nil box
+  end
+
 end
