@@ -4,7 +4,7 @@ module Overseer
     attr_reader :name
 
     def initialize(suite)
-      @name = suite.to_s
+      @name = suite.name
     end
 
     def run
