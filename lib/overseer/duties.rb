@@ -16,6 +16,14 @@ module Overseer
       @suites ||= []
     end
 
+    def failures_exists?
+      total_failures > 0
+    end
+
+    def errors_exists?
+      total_errors > 0
+    end
+
     def total_assertions
       suites.inject(0) { |total, suite| total + suite.total_test_assertions }
     end

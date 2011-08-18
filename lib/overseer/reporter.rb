@@ -12,6 +12,7 @@ module Overseer
     end
 
     def self.print_test_report
+      puts
       print_open_issues
       puts
       puts "Finished in %.3f seconds" % Overseer.total_time
@@ -32,28 +33,32 @@ module Overseer
       backtrace.map { |line| "     # #{line}"}.join("\n")
     end
 
-    # TODO: split it up in more methods
     def self.print_open_issues
-      if Overseer.total_failures > 0 || Overseer.total_errors > 0
-        print "\n\nOpen issues:\n\n"
+      if Overseer.failures_exists? || Overseer.errors_exists?
+        print "\nOpen issues:\n"
         counter = 1
         Overseer.suites.each do |suite|
           suite.tests.each do |test|
             unless test.passed?
-              puts "  #{counter}) #{(test.errors?) ? "Error:" : "Failure:"}"
-              puts "     Test: #{test.name} (in #{test.suite.name} Suite)"
-              exception = if test.errors?
-                            test.errors.first
-                          else
-                            test.failures.first
-                          end
-              puts "     #{exception.message}"
-              puts "#{format_backtrace_output(filter_backtrace(exception.backtrace))}"
+              print_test_issues(test, counter)
               counter += 1
             end
           end
         end
       end
+    end
+
+    def self.print_test_issues(test, counter)
+      puts
+      puts "  #{counter}) #{(test.errors?) ? "Error:" : "Failure:"}"
+      puts "     Test: #{test.name} (in #{test.suite.name} Suite)"
+      exception = if test.errors?
+                    test.errors.first
+                  else
+                    test.failures.first
+                  end
+      puts "     #{exception.message}"
+      puts "#{format_backtrace_output(filter_backtrace(exception.backtrace))}"
     end
   end
 end
