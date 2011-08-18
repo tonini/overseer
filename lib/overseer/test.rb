@@ -13,15 +13,15 @@ module Overseer
     end
 
     def passed?
-      !errors.any? && !failures.any?
+      !errors? && !failures?
     end
 
     def errors?
-      !errors.empty?
+      errors.any?
     end
 
     def failures?
-      !failures.empty?
+      failures.any?
     end
 
     def run
