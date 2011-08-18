@@ -1,6 +1,6 @@
 module Overseer
   class Test
-    attr_reader :time, :name, :code
+    attr_reader :time, :name, :code, :suite
     attr_accessor :errors, :failures, :assertions
 
     def initialize(name, &block)

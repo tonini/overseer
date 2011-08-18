@@ -12,7 +12,7 @@ module Overseer
     end
 
     def assert_equal(expected, actual, message=nil)
-      message ||= "Expected: #{expected}\n Got: #{actual}"
+      message ||= "Expected: #{expected}\n          Got: #{actual}"
       assert(expected == actual, message)
     end
   end
