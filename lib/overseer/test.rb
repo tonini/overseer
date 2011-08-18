@@ -25,6 +25,7 @@ module Overseer
     end
 
     def run
+      Overseer.current_test = self
       start_time = Time.now
       @code.call
     rescue Exception => e

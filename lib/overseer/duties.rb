@@ -1,10 +1,10 @@
 module Overseer
   module Duties
-    attr_reader :current_test, :current_suite
+    attr_reader :current_suite
+    attr_accessor :current_test
 
     def build_test(name, &block)
-      @current_test = Test.new(name, &block)
-      @current_suite.tests << @current_test
+      @current_suite.tests << Test.new(name, &block)
     end
 
     def build_suite(suite)
