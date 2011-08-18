@@ -1,4 +1,5 @@
 require "overseer/reporter"
+require "overseer/color"
 require "overseer/duties"
 require "overseer/dsl"
 require "overseer/assertions"

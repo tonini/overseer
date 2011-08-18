@@ -16,11 +16,11 @@ module Overseer
       print_open_issues
       puts
       puts "Finished in %.3f seconds" % Overseer.total_time
-      puts "#{Overseer.total_tests} tests, #{Overseer.total_assertions} assertions, #{Overseer.total_failures} failures, #{Overseer.total_errors} errors"
+      puts Color.green("#{Overseer.total_tests} tests, #{Overseer.total_assertions} assertions, #{Overseer.total_failures} failures, #{Overseer.total_errors} errors")
     end
 
     def self.print_single_test_result(test)
-      print(test.passed? ? "." : (test.errors? ? "E" : "F"))
+      print(test.passed? ? Color.green(".") : (test.errors? ? Color.red("E") : Color.red("F")))
     end
 
     def self.filter_backtrace(backtrace)
@@ -50,15 +50,15 @@ module Overseer
 
     def self.print_test_issues(test, counter)
       puts
-      puts "  #{counter}) #{(test.errors?) ? "Error:" : "Failure:"}"
+      puts "  #{counter}) #{(test.errors?) ? Color.red("Error:") : Color.red("Failure:")}"
       puts "     Test: #{test.name} (in #{test.suite.name} Suite)"
       exception = if test.errors?
                     test.errors.first
                   else
                     test.failures.first
                   end
-      puts "     #{exception.message}"
-      puts "#{format_backtrace_output(filter_backtrace(exception.backtrace))}"
+      puts Color.red("     #{exception.message}")
+      puts Color.bright_black("#{format_backtrace_output(filter_backtrace(exception.backtrace))}")
     end
   end
 end
