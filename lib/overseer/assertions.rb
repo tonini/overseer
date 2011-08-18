@@ -6,7 +6,7 @@ module Overseer
   module Assertions
     def assert(test, message=nil)
       Overseer.current_test.assertions += 1
-      raise Assertion, message
+      raise Assertion, message unless test
     rescue Assertion => e
       Overseer.current_test.failures << e
     end
