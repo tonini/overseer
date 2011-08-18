@@ -7,10 +7,10 @@ module Overseer
       @name = suite.to_s
     end
 
-    def run_each_test(&block)
+    def run
       tests.each do |test|
         test.run
-        block.call(test)
+        Reporter.print_single_test_result(test)
       end
     end
 

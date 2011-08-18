@@ -12,6 +12,10 @@ module Overseer
       suites << @current_suite
     end
 
+    def suites
+      @suites ||= []
+    end
+
     def total_assertions
       suites.inject(0) { |total, suite| total + suite.total_test_assertions }
     end
@@ -30,10 +34,6 @@ module Overseer
 
     def total_time
       suites.inject(0) { |total, suite| total + suite.total_test_time }
-    end
-
-    def suites
-      @suites ||= []
     end
   end
 end

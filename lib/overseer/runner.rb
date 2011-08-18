@@ -1,16 +1,8 @@
 module Overseer
   module Runner
-    def self.start
+    def self.run
       Reporter.report do
-        run_suites
-      end
-    end
-
-    def self.run_suites
-      Overseer.suites.each do |suite|
-        suite.run_each_test do |test|
-          Reporter.print_single_test_result(test)
-        end
+        Overseer.suites.each(&:run)
       end
     end
   end

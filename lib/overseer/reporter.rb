@@ -19,7 +19,7 @@ module Overseer
     end
 
     def self.print_single_test_result(test)
-      print test.passed? ? "." : (test.errors? ? "E" : "F")
+      print(test.passed? ? "." : (test.errors? ? "E" : "F"))
     end
   end
 end

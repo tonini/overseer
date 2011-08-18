@@ -1,19 +1,27 @@
 module Overseer
   class Test
-    attr_reader :time, :name, :suite, :code
+    attr_reader :time, :name, :code
+    attr_accessor :errors, :failures, :assertions
 
     def initialize(name, &block)
       @name = name
       @code = block
       @suite = Overseer.current_suite
+      @errors = []
+      @failures = []
+      @assertions = 0
     end
 
     def passed?
-      errors.empty?
+      !errors.any? && !failures.any?
     end
 
     def errors?
       !errors.empty?
+    end
+
+    def failures?
+      !failures.empty?
     end
 
     def run
@@ -23,22 +31,6 @@ module Overseer
       errors << e
     ensure
       @time = Time.now - start_time
-    end
-
-    def errors
-      @errors ||= []
-    end
-
-    def failures
-      @failures ||= []
-    end
-
-    def assertions=(amount)
-      @assertions = amount
-    end
-
-    def assertions
-      @assertions ||= 0
     end
   end
 end

@@ -17,5 +17,5 @@ module Overseer
     build_suite(suite)
   end
 
-  at_exit { Runner.start }
+  at_exit { Runner.run }
 end
