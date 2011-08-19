@@ -1,17 +1,19 @@
 module Overseer
   module Reporter
-    def self.report
+    extend self
+
+    def report
       print_header
       yield
       print_test_report
     end
 
-    def self.print_header
+    def print_header
       puts "Overseer is running..."
       puts
     end
 
-    def self.print_test_report
+    def print_test_report
       puts
       print_open_issues
       puts
@@ -19,21 +21,21 @@ module Overseer
       puts Color.green("#{Overseer.total_tests} tests, #{Overseer.total_assertions} assertions, #{Overseer.total_failures} failures, #{Overseer.total_errors} errors")
     end
 
-    def self.print_single_test_result(test)
+    def print_single_test_result(test)
       print(test.passed? ? Color.green(".") : (test.errors? ? Color.red("E") : Color.red("F")))
     end
 
-    def self.filter_backtrace(backtrace)
+    def filter_backtrace(backtrace)
       backtrace.reject do |line|
         line.rindex(OVERSEER_DIR, 0)
       end
     end
 
-    def self.format_backtrace_output(backtrace)
+    def format_backtrace_output(backtrace)
       backtrace.map { |line| "     # #{line}"}.join("\n")
     end
 
-    def self.print_open_issues
+    def print_open_issues
       if Overseer.failures_exists? || Overseer.errors_exists?
         print "\nOpen issues:\n"
         counter = 1
@@ -48,7 +50,7 @@ module Overseer
       end
     end
 
-    def self.print_test_issues(test, counter)
+    def print_test_issues(test, counter)
       puts
       puts "  #{counter}) #{(test.errors?) ? Color.red("Error:") : Color.red("Failure:")}"
       puts "     Test: #{test.name} (in #{test.suite.name} Suite)"
