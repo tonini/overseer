@@ -17,7 +17,7 @@ module Overseer
     end
 
     def assert_nil(obj, message=nil)
-      message ||= "Expected \"#{obj}\" to be nil\n"
+      message ||= "Expected \"#{obj}\" to be nil"
       assert(obj.nil?, message)
     end
   end
