@@ -4,7 +4,7 @@ class BasicTest
   include Overseer
 
   test "#hello" do
-    "nothing happends"
+    "nothing happens"
   end
 
   test "#other test" do
