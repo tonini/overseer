@@ -14,7 +14,7 @@ module Overseer
 
   OVERSEER_DIR = File.dirname(File.dirname(File.expand_path(__FILE__)))
 
-  def included(suite)
+  def included(suite) #:nodoc:
     suite.send(:extend, Dsl)
     suite.send(:extend, Assertions)
     build_suite(suite)
