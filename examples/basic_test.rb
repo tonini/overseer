@@ -78,4 +78,12 @@ class BasicTest
 
     assert_respond_to Responder.new, :hello
   end
+
+  before do
+    @james = "brown"
+  end
+
+  test "if the godfather of soul around" do
+    assert_equal "brown", @james
+  end
 end

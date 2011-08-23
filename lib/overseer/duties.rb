@@ -12,6 +12,14 @@ module Overseer
       suites << @current_suite
     end
 
+    def build_before(&block)
+      @current_suite.before = block
+    end
+
+    def build_after(&block)
+      @current_suite.after = block
+    end
+
     def suites
       @suites ||= []
     end

@@ -38,11 +38,19 @@ module Overseer
     def run
       Overseer.current_test = self
       start_time = Time.now
-      @code.call
-    rescue Exception => e
-      errors << e
-    ensure
-      @time = Time.now - start_time
+      suite.before.call if suite.before
+      begin
+        @code.call
+      rescue Exception => e
+        errors << e
+      ensure
+        begin
+          suite.after.call if suite.after
+        rescue Exception => e
+          errors << e if passed?
+        end
+        @time = Time.now - start_time
+      end
     end
   end
 end

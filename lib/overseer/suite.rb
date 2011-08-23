@@ -1,6 +1,6 @@
 module Overseer
   class Suite
-    attr_accessor :tests
+    attr_accessor :tests, :before, :after
     attr_reader :name
 
     def initialize(suite)
