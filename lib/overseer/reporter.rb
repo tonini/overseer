@@ -25,16 +25,6 @@ module Overseer
       print(test.passed? ? Color.green(".") : (test.errors? ? Color.red("E") : Color.red("F")))
     end
 
-    def filter_backtrace(backtrace)
-      backtrace.reject do |line|
-        line.rindex(OVERSEER_DIR, 0)
-      end
-    end
-
-    def format_backtrace_output(backtrace)
-      backtrace.map { |line| "     # #{line}"}.join("\n")
-    end
-
     def print_open_issues
       if Overseer.failures_exists? || Overseer.errors_exists?
         print "\nOpen issues:\n"
@@ -61,6 +51,16 @@ module Overseer
                   end
       puts Color.red("     #{exception.message}")
       puts Color.bright_black("#{format_backtrace_output(filter_backtrace(exception.backtrace))}")
+    end
+
+    def filter_backtrace(backtrace)
+      backtrace.reject do |line|
+        line.rindex(OVERSEER_DIR, 0)
+      end
+    end
+
+    def format_backtrace_output(backtrace)
+      backtrace.map { |line| "     # #{line}"}.join("\n")
     end
   end
 end
