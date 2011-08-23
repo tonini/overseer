@@ -24,13 +24,13 @@ module Overseer
       Overseer.current_test.failures << e
     end
 
-    # Compare two given object if they are equal
-    # Fails if +actual+ isn't equal +expected+
+    # Compare two given objects if they are equal
+    # Fails if +actual+ isn't equal to +expected+
     #
     # === Parameters
-    # expected:: the object which are expected
+    # expected:: the object which is expected
     # actual:: the actual given object
-    # message<String:: the identifying message for the +Assertion+ excpetion
+    # message<String>:: the identifying message for the +Assertion+ exception
     #
     def assert_equal(expected, actual, message=nil)
       message ||= "Expected: \"#{expected}\"\n          Got: \"#{actual}\""
@@ -42,7 +42,7 @@ module Overseer
     #
     # === Parameters
     # obj:: the object which will be verified
-    # message<String:: the identifying message for the +Assertion+ excpetion
+    # message<String>:: the identifying message for the +Assertion+ exception
     #
     def assert_nil(obj, message=nil)
       message ||= "Expected \"#{obj}\" to be nil"
@@ -55,7 +55,7 @@ module Overseer
     # === Parameters
     # clazz:: the expected class which should +obj+ be a kind of
     # obj:: the object which will be verified
-    # message<String:: the identifying message for the +Assertion+ excpetion
+    # message<String>:: the identifying message for the +Assertion+ exception
     #
     def assert_kind_of(clazz, obj, message=nil)
       message ||= "Expected \"#{obj.inspect}\" to be a kind of \"#{clazz}\", not \"#{obj.class}\""
@@ -63,25 +63,25 @@ module Overseer
     end
 
     # Verify if an object is a instance of a specified class
-    # Fails if +obj+ isn't a instance of +clazz+
+    # Fails if +obj+ isn't an instance of +clazz+
     #
     # === Parameters
     # clazz:: the expected class which should +obj+ be an instance of
     # obj:: the object which will be verified
-    # message<String:: the identifying message for the +Assertion+ excpetion
+    # message<String>:: the identifying message for the +Assertion+ exception
     #
     def assert_instance_of(clazz, obj, message=nil)
       message ||= "Expected \"#{obj.inspect}\" to be an instance of \"#{clazz}\", not \"#{obj.class}\""
       assert(obj.instance_of?(clazz), message)
     end
 
-    # Verify if an object respond to a method.
-    # Fails if +obj+ isn't respont to +method+
+    # Verify if an object responds to a method.
+    # Fails if +obj+ doesn't respond to +method+
     #
     # === Parameters
     # obj:: the object which will be verified
     # method:: the name of the method which +obj+ should respond to
-    # message<String:: the identifying message for the +Assertion+ excpetion
+    # message<String>:: the identifying message for the +Assertion+ exception
     #
     def assert_respond_to(obj, method, message=nil)
       message ||= "Expected \"#{obj.inspect}\" to respond to \"##{method}\""
