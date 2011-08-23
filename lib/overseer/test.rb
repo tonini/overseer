@@ -12,18 +12,29 @@ module Overseer
       @assertions = 0
     end
 
+    # Returns +true+ or +false+ depending if the test
+    # is passed or not
+    #
     def passed?
       !errors? && !failures?
     end
 
+    # Returns +true+ or +false depending if the test
+    # have outstanding errors or not
+    #
     def errors?
       errors.any?
     end
 
+    # Returns +true+ or +false depending if the test
+    # have outstanding failures or not
     def failures?
       failures.any?
     end
 
+    # Run the test, record the run time and store
+    # possible exceptions
+    #
     def run
       Overseer.current_test = self
       start_time = Time.now
