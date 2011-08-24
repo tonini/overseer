@@ -45,8 +45,32 @@ module Overseer
     # message<String>:: the identifying message for the +Assertion+ exception
     #
     def assert_nil(obj, message=nil)
-      message ||= "Expected \"#{obj}\" to be nil"
+      message ||= "Expected #{obj} to be nil"
       assert(obj.nil?, message)
+    end
+
+    # Verify if an object is +true+
+    # Fails if +obj+ isn't +true+
+    #
+    # === Parameters
+    # obj:: the object which will be verified
+    # message<String>:: the identifying message for the +Assertion+ exception
+    #
+    def assert_true(obj, message=nil)
+      message ||= "Expected #{obj} to be true"
+      assert(!!obj, message)
+    end
+
+    # Verify if an object is +false+
+    # Fails if +obj+ isn't +false+
+    #
+    # === Parameters
+    # obj:: the object which will be verified
+    # message<String>:: the identifying message for the +Assertion+ exception
+    #
+    def assert_false(obj, message=nil)
+      message ||= "Expected #{obj} to be false"
+      assert(!obj, message)
     end
 
     # Verify if an object is a kind of a specified class
